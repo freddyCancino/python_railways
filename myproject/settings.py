@@ -9,7 +9,9 @@ SECRET_KEY = config('SECRET_KEY', default='clave-local-solo-para-desarrollo')
 # En Railway se setea DEBUG=False
 DEBUG = config('DEBUG', default=True, cast=bool)
 
-ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='*').split(',')
+#ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='*').split(',')
+ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "").split(",")
+CSRF_TRUSTED_ORIGINS = os.environ.get("CSRF_TRUSTED_ORIGINS", "").split(",")
 
 INSTALLED_APPS = [
     'django.contrib.admin',
